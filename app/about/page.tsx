@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Typography, Card, CardContent, Button, Avatar, Box, Divider, Stack } from "@mui/material";
+import { Container, Typography, Card, CardContent, Button, Avatar, Box, Divider, Stack, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -8,166 +8,244 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
+import BadgeIcon from '@mui/icons-material/Badge';
+import ClassIcon from '@mui/icons-material/Class';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
 export default function AboutPage() {
   const router = useRouter();
 
+  // สไตล์สำหรับ Typography หัวข้อหลัก (Title)
+  const mainTitleStyle = {
+    fontWeight: "800",
+    color: "#1a202c",
+    letterSpacing: "-0.5px",
+    display: "flex",
+    alignItems: "center",
+    gap: 1.5,
+  };
+
+  // สไตล์สำหรับข้อมูลแต่ละบรรทัดใน Stack
+  const infoRowStyle = {
+    display: "flex",
+    alignItems: "center",
+    gap: 2,
+    p: 1.5,
+    borderRadius: 2,
+    bgcolor: "#f8fafc",
+    border: "1px solid #e2e8f0",
+  };
+
+  // สไตล์สำหรับ Icon ใน Info Row
+  const infoIconStyle = {
+    color: "#ff4d4d",
+    fontSize: "1.25rem",
+  };
+
+  // สไตล์สำหรับปุ่ม Social Media
+  const socialButtonStyle = {
+    width: 40,
+    height: 40,
+    cursor: "pointer",
+    textDecoration: "none",
+    transition: "transform 0.2s, box-shadow 0.2s",
+    "&:hover": {
+      transform: "translateY(-3px)",
+      boxShadow: "0px 4px 12px rgba(0,0,0,0.15)",
+    },
+  };
+
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#0f0f12", py: 8 }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#0f0f12", py: { xs: 4, md: 8 } }}>
       <Container maxWidth="sm">
         
-        {/* ปุ่มกดย้อนกลับไปหน้าแรก */}
+        {/* ปุ่มกดย้อนกลับ */}
         <Button 
           startIcon={<ArrowBackIcon />} 
           onClick={() => router.push("/")} 
-          sx={{ mb: 4, fontWeight: "bold", color: "#fff", "&:hover": { bgcolor: "rgba(255,255,255,0.08)" } }}
+          sx={{ 
+            mb: 4, 
+            fontWeight: "bold", 
+            color: "#fff", 
+            textTransform: "none",
+            borderRadius: 3,
+            px: 2,
+            py: 1,
+            "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } 
+          }}
         >
           Back to Pokédex
         </Button>
 
         {/* บัตรข้อมูลโปรเจกต์ */}
-        <Card sx={{ borderRadius: 5, bgcolor: "#ffffff", border: "1px solid #e2e8f0", boxShadow: "0px 10px 30px rgba(0,0,0,0.3)", p: { xs: 2, sm: 4 } }}>
+        <Card sx={{ 
+          borderRadius: 6, 
+          bgcolor: "#ffffff", 
+          border: "1px solid #e2e8f0", 
+          boxShadow: "0px 20px 40px rgba(0,0,0,0.4)", 
+          overflow: "visible" 
+        }}>
           
-          {/* หัวข้อ Developer Information */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 3 }}>
-            <PersonIcon sx={{ color: "#1a202c" }} />
-            <Typography variant="h6" component="h2" sx={{ fontWeight: "700", color: "#1a202c" }}>
+          <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
+            
+            {/* หัวข้อ Developer Information */}
+            <Typography variant="h5" sx={mainTitleStyle}>
+              <PersonIcon sx={{ color: "#ff4d4d", fontSize: "1.75rem" }} />
               Developer Information
             </Typography>
-          </Box>
 
-          {/* รูปโปรไฟล์และ Social Media */}
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", my: 2 }}>
-            <Box sx={{ 
-              bgcolor: "#f7fafc", 
-              borderRadius: "50%", 
-              p: 0.5, 
-              border: "2px solid #edf2f7",
-              boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
-              display: "inline-block"
-            }}>
-              <Avatar 
-                alt="ชาญวิทย์ อุ่นสกุล"
-                src="Alex.jpg" // 👈 สามารถใส่พาธรูปภาพของคุณตรงนี้ได้ เช่น "/profile.jpg"
-                sx={{ width: 120, height: 120, bgcolor: "#ff4d4d", fontSize: "2.5rem" }}
-              >
-              </Avatar>
+            <Divider sx={{ my: 3, borderColor: "#e2e8f0" }} />
+
+            {/* ส่วนโปรไฟล์และ Social Media */}
+            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mb: 4 }}>
+              
+              {/* รูปโปรไฟล์ขยายใหญ่พิเศษ (180px) พร้อมเอฟเฟกต์แสงฟุ้งด้านหลัง */}
+              <Box sx={{ 
+                position: "relative",
+                display: "inline-block",
+                mb: 3,
+              }}>
+                <Box sx={{ 
+                  position: "absolute",
+                  inset: -6,
+                  borderRadius: "50%",
+                  background: "linear-gradient(45deg, #ff4d4d, #f9d423)",
+                  opacity: 0.8,
+                  filter: "blur(12px)",
+                }} />
+                <Avatar 
+                  alt="ชาญวิทย์ อุ่นสกุล"
+                  src="Alex1.jpg" 
+                  sx={{ 
+                    width: 180,  // ✨ ขยายขนาดความกว้างขึ้นเป็น 180px
+                    height: 180, // ✨ ขยายขนาดความสูงขึ้นเป็น 180px
+                    bgcolor: "#ff4d4d", 
+                    fontSize: "4rem",
+                    border: "5px solid #fff",
+                    boxShadow: "0px 10px 28px rgba(0,0,0,0.25)",
+                    position: "relative",
+                    zIndex: 1
+                  }}
+                >
+                  CA
+                </Avatar>
+              </Box>
+
+              <Typography variant="h4" sx={{ fontWeight: "800", color: "#1a202c", mb: 0.5, letterSpacing: "-1px" }}>
+                ชาญวิทย์ อุ่นสกุล
+              </Typography>
+              <Typography variant="subtitle1" sx={{ color: "#718096", fontWeight: "600", mb: 2.5, bgcolor: "#edf2f7", px: 2, py: 0.5, borderRadius: 4 }}>
+                Front-end Web Developer
+              </Typography>
+
+              {/* ปุ่ม Social Media (แก้ไขพรอพ เพื่อลบ Error เคลียร์เส้นแดงเรียบร้อย) */}
+              <Stack direction="row" spacing={2.5} sx={{ justifyContent: "center" }}>
+                <Avatar 
+                  component="a"
+                  href="https://www.facebook.com/chanwit.unsakul.3?locale=th_TH" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ ...socialButtonStyle, bgcolor: "#1877f2" }}
+                >
+                  <FacebookIcon sx={{ fontSize: 22, color: "#fff" }} />
+                </Avatar>
+                <Avatar 
+                  component="a"
+                  href="https://www.instagram.com/chanwit_alex/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ ...socialButtonStyle, bgcolor: "#e1306c" }}
+                >
+                  <InstagramIcon sx={{ fontSize: 22, color: "#fff" }} />
+                </Avatar>
+              </Stack>
             </Box>
 
-            <Typography variant="h5" sx={{ fontWeight: "bold", color: "#1a202c", mt: 2, mb: 0.5 }}>
-              ชาญวิทย์ อุ่นสกุล
-            </Typography>
-            <Typography variant="body2" sx={{ color: "#718096", fontWeight: "500", mb: 2 }}>
-              Front-end Web Developer
-            </Typography>
+            {/* เส้นคั่นพร้อมข้อความ */}
+            <Divider sx={{ my: 4, borderColor: "#e2e8f0" }}>
+              <Typography variant="caption" sx={{ color: "#94a3b8", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", px: 1 }}>
+                Personal Info
+              </Typography>
+            </Divider>
 
-            {/* ปุ่ม Social Media (เอา GitHub ออก และเพิ่มลิงก์เปิดแท็บใหม่เด้งไปที่แอป) */}
-            <Box sx={{ display: "flex", gap: 2, mb: 1 }}>
+            {/* ข้อมูลประวัตินักศึกษา (Personal Info) */}
+            <Stack spacing={2} sx={{ width: "100%", color: "#2d3748" }}>
               
-              {/* ปุ่ม Facebook */}
-              <Avatar 
-                component="a"
-                href="https://www.facebook.com/chanwit.unsakul.3?locale=th_TH" // 👈 เปลี่ยนเป็นลิงก์เฟซบุ๊กจริงของคุณตรงนี้
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ 
-                  bgcolor: "#1877f2", 
-                  width: 36, 
-                  height: 36, 
-                  cursor: "pointer", 
-                  textDecoration: "none",
-                  "&:hover": { opacity: 0.8 } 
-                }}
-              >
-                <FacebookIcon sx={{ fontSize: 20, color: "#fff" }} />
-              </Avatar>
+              <Box sx={infoRowStyle}>
+                <BadgeIcon sx={infoIconStyle} />
+                <Typography variant="body1">
+                  <strong>รหัสนักศึกษา:</strong> 673450187-3
+                </Typography>
+              </Box>
 
-              {/* ปุ่ม Instagram */}
-              <Avatar 
-                component="a"
-                href="https://www.instagram.com/chanwit_alex/" // 👈 เปลี่ยนเป็นลิงก์ไอจีจริงของคุณตรงนี้
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ 
-                  bgcolor: "#e1306c", 
-                  width: 36, 
-                  height: 36, 
-                  cursor: "pointer", 
-                  textDecoration: "none",
-                  "&:hover": { opacity: 0.8 } 
-                }}
-              >
-                <InstagramIcon sx={{ fontSize: 20, color: "#fff" }} />
-              </Avatar>
+              <Box sx={infoRowStyle}>
+                <AccountTreeIcon sx={infoIconStyle} />
+                <Typography variant="body1">
+                  <strong>สาขาวิชา:</strong> Computer and Information Science
+                </Typography>
+              </Box>
 
-            </Box>
-          </Box>
+              <Box sx={infoRowStyle}>
+                <ClassIcon sx={infoIconStyle} />
+                <Typography variant="body1">
+                  <strong>รายวิชา:</strong> Front-end Web Programming
+                </Typography>
+              </Box>
 
-          <Divider sx={{ my: 3 }} />
-
-          {/* ข้อมูลการจัดวางแบบ Stack (แก้ไขพรอพ width ย้ายเข้า sx เพื่อเคลียร์ Error TypeScript แล้ว) */}
-          <Box sx={{ color: "#2d3748", my: 3 }}>
-            <Stack spacing={2} sx={{ width: "100%" }}>
-              
-              <Typography variant="body1">
-                <strong>ชื่อ-นามสกุล : </strong> ชาญวิทย์ อุ่นสกุล
-              </Typography>
-
-              <Typography variant="body1">
-                <strong>รหัสนักศึกษา : </strong> 673450187-3
-              </Typography>
-
-              <Typography variant="body1">
-                <strong>สาขาวิชา : </strong> Computer and Information Science
-              </Typography>
-
-              <Typography variant="body1">
-                <strong>รายวิชา : </strong> Front-end Web Programming
-              </Typography>
-
-              <Typography variant="body1">
-                <strong>คณะ : </strong> คณะสหวิทยาการ
-              </Typography>
-
-              <Typography variant="body1">
-                <SchoolIcon sx={{ verticalAlign: "middle", mr: 1, color: "#ff4d4d" }} />
-                มหาวิทยาลัยขอนแก่น วิทยาเขตหนองคาย
-              </Typography>
+              <Box sx={infoRowStyle}>
+                <SchoolIcon sx={infoIconStyle} />
+                <Box>
+                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>คณะสหวิทยาการ</Typography>
+                  <Typography variant="body2" sx={{ color: "#718096" }}>มหาวิทยาลัยขอนแก่น วิทยาเขตหนองคาย</Typography>
+                </Box>
+              </Box>
 
             </Stack>
-          </Box>
 
-          <Divider sx={{ my: 3 }} />
+            <Divider sx={{ my: 4, borderColor: "#e2e8f0" }} />
 
-          {/* ส่วนท้ายรายละเอียดเกี่ยวกับโปรเจกต์ */}
-          <CardContent sx={{ p: 0 }}>
-            <Typography variant="h5" component="h1" sx={{ fontWeight: "900", color: "#1a202c", mb: 1 }}>
-              About This Project
-            </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 3, fontStyle: "italic", lineHeight: 1.6 }}>
-              "โปรเจกต์นี้พัฒนาขึ้นมาเพื่อเรียนรู้และประยุกต์ใช้ความรู้ด้านการทำ Pagination, Dynamic Routing, Data Fetching จาก PokeAPI และการจัดหน้าเว็บให้เป็นระบบ Responsive ด้วย Material-UI"
-            </Typography>
+            {/* ส่วนท้ายรายละเอียดเกี่ยวกับโปรเจกต์ */}
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="h5" sx={{ ...mainTitleStyle, mb: 1.5 }}>
+                <GitHubIcon sx={{ color: "#ff4d4d", fontSize: "1.75rem" }} />
+                About This Project
+              </Typography>
+              
+              <Paper variant="outlined" sx={{ p: 2.5, bgcolor: "#f8fafc", borderRadius: 3, border: "1px solid #e2e8f0", mb: 3.5 }}>
+                <Typography variant="body2" color="text.secondary" sx={{ fontStyle: "italic", lineHeight: 1.7, textAlign: "justify" }}>
+                  "โปรเจกต์นี้พัฒนาขึ้นมาเพื่อเรียนรู้และประยุกต์ใช้ความรู้ด้านการทำ Pagination, Dynamic Routing, Data Fetching จาก PokeAPI และการจัดหน้าเว็บให้เป็นระบบ Responsive ด้วย Material-UI โดยเน้นการสร้าง User Experience ที่ดีในการค้นหาข้อมูลโปเกมอน"
+                </Typography>
+              </Paper>
 
-            {/* ปุ่มลิงก์ไปหน้า GitHub Source Code ใหญ่ด้านล่าง */}
-            <Button
-              variant="contained"
-              startIcon={<GitHubIcon />}
-              href="https://github.com" // 👈 เปลี่ยนเป็นลิงก์ Repository งานของคุณได้ครับ
-              target="_blank"
-              rel="noopener noreferrer"
-              fullWidth
-              sx={{ 
-                bgcolor: "#1a202c", 
-                color: "#fff",
-                py: 1.5,
-                borderRadius: 3,
-                fontWeight: "bold",
-                boxShadow: "0px 4px 12px rgba(0,0,0,0.2)",
-                "&:hover": { bgcolor: "#2d3748" } 
-              }}
-            >
-              GitHub Source Code
-            </Button>
+              {/* ปุ่มลิงก์ไปหน้า GitHub */}
+              <Button
+                variant="contained"
+                startIcon={<GitHubIcon />}
+                href="https://github.com/ChanwitAlex/pokemon-web"
+                target="_blank"
+                rel="noopener noreferrer"
+                fullWidth
+                sx={{ 
+                  bgcolor: "#1a202c", 
+                  color: "#fff",
+                  py: 1.8,
+                  borderRadius: 4,
+                  fontWeight: "800",
+                  fontSize: "1rem",
+                  textTransform: "none",
+                  boxShadow: "0px 8px 20px rgba(26,32,44,0.3)",
+                  transition: "all 0.2s",
+                  "&:hover": { 
+                    bgcolor: "#2d3748",
+                    boxShadow: "0px 12px 28px rgba(26,32,44,0.4)",
+                    transform: "translateY(-2px)"
+                  } 
+                }}
+              >
+                View on GitHub Source Code
+              </Button>
+            </Box>
+
           </CardContent>
 
         </Card>

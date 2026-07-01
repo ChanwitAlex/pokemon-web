@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, use } from "react"; // เพิ่มการอิมพอร์ต use จาก react
+import { useEffect, useState, use } from "react"; 
 import { useRouter } from "next/navigation";
 import {
   Container,
@@ -27,9 +27,9 @@ interface PokemonDetail {
 export default function PokemonDetailPage({
   params,
 }: {
-  params: Promise<{ pokemonname: string }>; // แก้ไข Type ให้เป็น Promise ตามมาตรฐาน Next.js ใหม่
+  params: Promise<{ pokemonname: string }>; 
 }) {
-  // แก้ไข: ใช้ React.use() แกะห่อ params เพื่อแก้ปัญหา Console Error ซินแทกซ์สากล
+
   const resolvedParams = use(params);
   const pokemonname = resolvedParams.pokemonname;
   
@@ -91,7 +91,7 @@ export default function PokemonDetailPage({
         onClick={() => router.push('/')} 
         sx={{ mb: 3, color: '#fff', '&:hover': { bgcolor: 'rgba(255,255,255,0.1)' } }}
       >
-        <span style={{ marginRight: '8px' }}>⬅</span> Back to Pokedex
+        <span style={{ marginRight: '8px' }}>⬅</span>   Back to Pokédex
       </Button>
 
       <Card sx={{ borderRadius: 4, boxShadow: 3, overflow: "hidden", bgcolor: '#1e1e1e', color: '#fff' }}>
