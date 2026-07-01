@@ -175,7 +175,7 @@ export default function Home() {
     <Box sx={{ minHeight: "100vh", bgcolor: "#0f0f12", color: "#fff", py: 6 }}>
       <Container maxWidth="lg">
         
-        {/* Header */}
+        {/* Header Section พร้อมปุ่มกรอบสีแดงโมเดิร์น */}
         <Box sx={{ 
           display: "flex", 
           flexDirection: { xs: "column", sm: "row" }, 
@@ -192,14 +192,41 @@ export default function Home() {
               ค้นหาและคัดกรองข้อมูลโปเกมอนมากกว่า 1,351 สายพันธุ์
             </Typography>
           </Box>
+          
+          {/* ✨ ปุ่ม About This Project ที่ทำกรอบสไตล์ Outlined ไว้กดคลิกได้ชัดเจน */}
           <Link href="/about" passHref style={{ textDecoration: 'none' }}>
-            <Typography variant="subtitle1" sx={{ color: "#ff4d4d", fontWeight: "600", '&:hover': { color: "#ff7676", textDecoration: 'underline' } }}>
+            <Box
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                px: 2.5,
+                py: 1,
+                borderRadius: "12px",
+                border: "2px solid #ff4d4d",
+                color: "#ff4d4d",
+                fontWeight: "700",
+                transition: "all 0.3s ease",
+                cursor: "pointer",
+                "& :hover": {
+                  color: "#fff",
+                },
+                "&:hover": {
+                  backgroundColor: "#ff4d4d",
+                  color: "#fff",
+                  boxShadow: "0px 4px 15px rgba(255, 77, 77, 0.4)",
+                  transform: "translateY(-2px)"
+                },
+                "&:active": {
+                  transform: "translateY(0)"
+                }
+              }}
+            >
               About This Project ➔
-            </Typography>
+            </Box>
           </Link>
         </Box>
 
-        {/* 🤍 Search & Filters - ปรับกรอบเป็นสีขาวสว่าง */}
+        {/* Search & Filters */}
         <Card 
           sx={{ 
             p: 3, 
@@ -287,7 +314,7 @@ export default function Home() {
           </Box>
         </Card>
 
-        {/* 🤍 Grid ของโปเกมอน - ปรับกรอบการ์ดทั้งหมดให้เป็นสีขาวสว่าง */}
+        {/* Grid ของโปเกมอน */}
         <Grid container spacing={3}>
           {loadingList || loadingDetails
             ? Array.from(new Array(limit)).map((_, index) => (
