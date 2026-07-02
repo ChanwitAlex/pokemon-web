@@ -148,11 +148,13 @@ export default function AboutPage() {
 
             {/* ปุ่มสำหรับคลิกติดต่อทาง Gmail และ Social Media อื่นๆ */}
             <Stack direction="row" spacing={2.5} sx={{ justifyContent: "center", mb: 2 }}>
-              {/* ปุ่ม Gmail (ส่ง Email ทันทีเมื่อคลิก) */}
+              {/* ปุ่ม Gmail (กดแล้วจะเปิดเว็บ Gmail ที่แท็บใหม่ทันที) */}
               <Avatar 
                 component="a"
-                href="mailto:chanwit.u@kkumail.com" // ✉️ คุณสามารถเปลี่ยนเป็น Gmail จริงของคุณได้ตรงนี้เลยครับ
-                sx={{ ...socialButtonStyle, bgcolor: "#ea4335" }} // ใช้สีแดงสไตล์แบรนด์ Google Gmail
+                href="https://mail.google.com" 
+                target="_blank"                
+                rel="noopener noreferrer"
+                sx={{ ...socialButtonStyle, bgcolor: "#ea4335" }} 
               >
                 <MailIcon sx={{ fontSize: 22, color: "#fff" }} />
               </Avatar>
