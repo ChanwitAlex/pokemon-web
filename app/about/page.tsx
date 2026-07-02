@@ -6,6 +6,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import MailIcon from "@mui/icons-material/Mail"; 
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import BadgeIcon from '@mui/icons-material/Badge';
@@ -43,7 +44,7 @@ export default function AboutPage() {
     fontSize: "1.25rem",
   };
 
-  // สไตล์สำหรับปุ่ม Social Media
+  // สไตล์สำหรับปุ่ม Social Media และ Gmail
   const socialButtonStyle = {
     width: 40,
     height: 40,
@@ -138,15 +139,24 @@ export default function AboutPage() {
 
             </Stack>
 
-            {/* เส้นคั่นพร้อมปุ่ม Social Media สำหรับติดต่อด้านล่างประวัตินักศึกษา */}
+            {/* เส้นคั่นพร้อมปุ่มช่องทางติดต่อด้านล่างประวัตินักศึกษา */}
             <Divider sx={{ my: 4, borderColor: "#e2e8f0" }}>
               <Typography variant="caption" sx={{ color: "#94a3b8", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", px: 1 }}>
                 Contact Developer
               </Typography>
             </Divider>
 
-            {/* ปุ่ม Social Media แบบคลิกเด้งไปที่แอป */}
+            {/* ปุ่มสำหรับคลิกติดต่อทาง Gmail และ Social Media อื่นๆ */}
             <Stack direction="row" spacing={2.5} sx={{ justifyContent: "center", mb: 2 }}>
+              {/* ปุ่ม Gmail (ส่ง Email ทันทีเมื่อคลิก) */}
+              <Avatar 
+                component="a"
+                href="mailto:chanwit.u@kkumail.com" // ✉️ คุณสามารถเปลี่ยนเป็น Gmail จริงของคุณได้ตรงนี้เลยครับ
+                sx={{ ...socialButtonStyle, bgcolor: "#ea4335" }} // ใช้สีแดงสไตล์แบรนด์ Google Gmail
+              >
+                <MailIcon sx={{ fontSize: 22, color: "#fff" }} />
+              </Avatar>
+
               <Avatar 
                 component="a"
                 href="https://www.facebook.com/chanwit.unsakul.3?locale=th_TH" 
@@ -156,6 +166,7 @@ export default function AboutPage() {
               >
                 <FacebookIcon sx={{ fontSize: 22, color: "#fff" }} />
               </Avatar>
+
               <Avatar 
                 component="a"
                 href="https://www.instagram.com/chanwit_alex/" 
