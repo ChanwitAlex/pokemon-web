@@ -10,7 +10,6 @@ import {
   Button,
   Box,
   Chip,
-  LinearProgress,
   Skeleton
 } from "@mui/material";
 
@@ -143,16 +142,14 @@ export default function PokemonDetailPage({
               <Box sx={{ mb: 3 }}>
                 {pokemon.stats.map((s) => (
                   <Box key={s.stat.name} sx={{ mb: 1.5 }}>
-                    <Box sx={{ display: 'flex', justifyContent: "space-between", mb: 0.5 }}>
-                      <Typography variant="body2" sx={{ textTransform: "uppercase", color: 'rgba(255,255,255,0.7)' }}>{s.stat.name}</Typography>
-                      <Typography variant="body2" sx={{ fontWeight: "bold" }}>{s.base_stat}</Typography>
+                    <Box sx={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
+                      <Typography variant="body2" sx={{ textTransform: "uppercase", color: 'rgba(255,255,255,0.7)' }}>
+                        {s.stat.name}
+                      </Typography>
+                      <Typography variant="body2" sx={{ fontWeight: "bold", fontSize: "1.05rem" }}>
+                        {s.base_stat}
+                      </Typography>
                     </Box>
-                    <LinearProgress 
-                      variant="determinate" 
-                      value={Math.min((s.base_stat / 150) * 100, 100)} 
-                      color="success" 
-                      sx={{ height: 8, borderRadius: 4, bgcolor: 'rgba(255,255,255,0.1)' }} 
-                    />
                   </Box>
                 ))}
               </Box>
