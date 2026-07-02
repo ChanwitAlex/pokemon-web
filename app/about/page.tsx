@@ -1,20 +1,31 @@
 "use client";
 
-import { Container, Typography, Card, CardContent, Button, Box, Divider, Stack, Paper, Avatar, Chip } from "@mui/material";
+import { Container, Typography, Card, CardContent, Button, Box, Divider, Stack, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import MailIcon from "@mui/icons-material/Mail"; // นำเข้าไอคอน Gmail
+import MailIcon from "@mui/icons-material/Mail"; 
 import PersonIcon from "@mui/icons-material/Person";
 import SchoolIcon from "@mui/icons-material/School";
 import BadgeIcon from '@mui/icons-material/Badge';
 import ClassIcon from '@mui/icons-material/Class';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import GitHubIcon from "@mui/icons-material/GitHub";
+import { Avatar } from "@mui/material";
 
 export default function AboutPage() {
   const router = useRouter();
+
+  // สไตล์สำหรับ Typography หัวข้อหลัก (Title)
+  const mainTitleStyle = {
+    fontWeight: "800",
+    color: "#1a202c",
+    letterSpacing: "-0.5px",
+    display: "flex",
+    alignItems: "center",
+    gap: 1.5,
+  };
 
   // สไตล์สำหรับข้อมูลแต่ละบรรทัดใน Stack
   const infoRowStyle = {
@@ -74,67 +85,29 @@ export default function AboutPage() {
           bgcolor: "#ffffff", 
           border: "1px solid #e2e8f0", 
           boxShadow: "0px 20px 40px rgba(0,0,0,0.4)", 
-          textAlign: "center"
         }}>
           
           <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
             
-            {/* รูป Avatar ประวัตินักศึกษา */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-              <Avatar 
-                src="/profile.jpg" // ⚠️ เปลี่ยนเป็นที่อยู่รูปจริงของคุณในโฟลเดอร์ public
-                sx={{ width: 130, height: 130, border: '4px solid #fff', boxShadow: '0px 8px 24px rgba(234, 67, 53, 0.3)' }} 
-              />
-            </Box>
-
-            <Typography variant="h5" sx={{ fontWeight: "800", color: "#1a202c", mb: 0.5 }}>
-              ชาญวิทย์ อุ่นสกุล
+            {/* หัวข้อ Developer Information */}
+            <Typography variant="h5" sx={mainTitleStyle}>
+              <PersonIcon sx={{ color: "#ff4d4d", fontSize: "1.75rem" }} />
+              Developer Information
             </Typography>
-            
-            <Chip label="Front-end Web Developer" size="small" sx={{ bgcolor: "#e2e8f0", color: "#4a5568", fontWeight: "600", mb: 3 }} />
 
-            {/* ปุ่มสำหรับคลิกติดต่อทาง Social Media และ Gmail (เรียงต่อกัน 3 ไอคอนตามภาพดีไซน์) */}
-            <Stack direction="row" spacing={2.5} sx={{ justifyContent: "center", mb: 4 }}>
-              <Avatar 
-                component="a"
-                href="https://www.facebook.com/chanwit.unsakul.3?locale=th_TH" 
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ ...socialButtonStyle, bgcolor: "#1877f2" }}
-              >
-                <FacebookIcon sx={{ fontSize: 22, color: "#fff" }} />
-              </Avatar>
-
-              <Avatar 
-                component="a"
-                href="https://www.instagram.com/chanwit_alex/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ ...socialButtonStyle, bgcolor: "#e1306c" }}
-              >
-                <InstagramIcon sx={{ fontSize: 22, color: "#fff" }} />
-              </Avatar>
-
-              {/* เพิ่มปุ่ม Gmail คลิกแล้วเด้งไปหน้าเว็บ Gmail ทันที */}
-              <Avatar 
-                component="a"
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=chanwit.u@kkumail.com" 
-                target="_blank"                
-                rel="noopener noreferrer"
-                sx={{ ...socialButtonStyle, bgcolor: "#ea4335" }} 
-              >
-                <MailIcon sx={{ fontSize: 22, color: "#fff" }} />
-              </Avatar>
-            </Stack>
-
-            <Divider sx={{ my: 3, borderColor: "#e2e8f0" }}>
-              <Typography variant="caption" sx={{ color: "#94a3b8", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", px: 1 }}>
-                PERSONAL INFO
-              </Typography>
-            </Divider>
+            <Divider sx={{ my: 3, borderColor: "#e2e8f0" }} />
 
             {/* ส่วนข้อมูลประวัตินักศึกษา (Personal Info) */}
-            <Stack spacing={2} sx={{ width: "100%", color: "#2d3748", textAlign: "left" }}>
+            <Stack spacing={2} sx={{ width: "100%", color: "#2d3748" }}>
+              
+              {/* ชื่อ-นามสกุล อยู่บนสุดเหนือนรหัสนักศึกษา */}
+              <Box sx={infoRowStyle}>
+                <PersonIcon sx={infoIconStyle} />
+                <Typography variant="body1">
+                  <strong>ชื่อ-นามสกุล:</strong> นายชาญวิทย์ อุ่นสกุล
+                </Typography>
+              </Box>
+
               <Box sx={infoRowStyle}>
                 <BadgeIcon sx={infoIconStyle} />
                 <Typography variant="body1">
@@ -163,14 +136,57 @@ export default function AboutPage() {
                   <Typography variant="body2" sx={{ color: "#718096" }}>มหาวิทยาลัยขอนแก่น วิทยาเขตหนองคาย</Typography>
                 </Box>
               </Box>
+
+            </Stack>
+
+            {/* เส้นคั่นพร้อมปุ่มช่องทางติดต่อด้านล่างประวัตินักศึกษา */}
+            <Divider sx={{ my: 4, borderColor: "#e2e8f0" }}>
+              <Typography variant="caption" sx={{ color: "#94a3b8", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", px: 1 }}>
+                Contact Developer
+              </Typography>
+            </Divider>
+
+            {/* ปุ่มสำหรับคลิกติดต่อทาง Gmail และ Social Media อื่นๆ */}
+            <Stack direction="row" spacing={2.5} sx={{ justifyContent: "center", mb: 2 }}>
+              {/* ปุ่ม Gmail (กดแล้วจะเปิดเว็บ Gmail ที่แท็บใหม่ทันที) */}
+              <Avatar 
+                component="a"
+                href="https://mail.google.com" 
+                target="_blank"                
+                rel="noopener noreferrer"
+                sx={{ ...socialButtonStyle, bgcolor: "#ea4335" }} 
+              >
+                <MailIcon sx={{ fontSize: 22, color: "#fff" }} />
+              </Avatar>
+
+              <Avatar 
+                component="a"
+                href="https://www.facebook.com/chanwit.unsakul.3?locale=th_TH" 
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ ...socialButtonStyle, bgcolor: "#1877f2" }}
+              >
+                <FacebookIcon sx={{ fontSize: 22, color: "#fff" }} />
+              </Avatar>
+
+              <Avatar 
+                component="a"
+                href="https://www.instagram.com/chanwit_alex/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ ...socialButtonStyle, bgcolor: "#e1306c" }}
+              >
+                <InstagramIcon sx={{ fontSize: 22, color: "#fff" }} />
+              </Avatar>
             </Stack>
 
             <Divider sx={{ my: 4, borderColor: "#e2e8f0" }} />
 
             {/* ส่วนท้ายรายละเอียดเกี่ยวกับโปรเจกต์ */}
-            <Box sx={{ mt: 2, textAlign: "left" }}>
-              <Typography variant="h6" sx={{ fontWeight: "800", color: "#1a202c", mb: 1.5, display: "flex", alignItems: "center", gap: 1 }}>
-                <GitHubIcon sx={{ color: "#ff4d4d" }} /> About This Project ➔
+            <Box sx={{ mt: 2 }}>
+              <Typography variant="h5" sx={{ ...mainTitleStyle, mb: 1.5 }}>
+                <GitHubIcon sx={{ color: "#ff4d4d", fontSize: "1.75rem" }} />
+                About This Project
               </Typography>
               
               <Paper variant="outlined" sx={{ p: 2.5, bgcolor: "#f8fafc", borderRadius: 3, border: "1px solid #e2e8f0", mb: 3.5 }}>
@@ -179,6 +195,7 @@ export default function AboutPage() {
                 </Typography>
               </Paper>
 
+              {/* ปุ่มลิงก์ไปหน้า GitHub */}
               <Button
                 variant="contained"
                 startIcon={<GitHubIcon />}
@@ -192,8 +209,15 @@ export default function AboutPage() {
                   py: 1.8,
                   borderRadius: 4,
                   fontWeight: "800",
+                  fontSize: "1rem",
                   textTransform: "none",
-                  "&:hover": { bgcolor: "#2d3748" } 
+                  boxShadow: "0px 8px 20px rgba(26,32,44,0.3)",
+                  transition: "all 0.2s",
+                  "&:hover": { 
+                    bgcolor: "#2d3748",
+                    boxShadow: "0px 12px 28px rgba(26,32,44,0.4)",
+                    transform: "translateY(-2px)"
+                  } 
                 }}
               >
                 View on GitHub Source Code
@@ -201,6 +225,7 @@ export default function AboutPage() {
             </Box>
 
           </CardContent>
+
         </Card>
       </Container>
     </Box>
