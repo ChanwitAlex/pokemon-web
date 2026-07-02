@@ -1,6 +1,6 @@
 "use client";
 
-import { Container, Typography, Card, CardContent, Button, Avatar, Box, Divider, Stack, Paper } from "@mui/material";
+import { Container, Typography, Card, CardContent, Button, Box, Divider, Stack, Paper } from "@mui/material";
 import { useRouter } from "next/navigation";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -11,6 +11,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import BadgeIcon from '@mui/icons-material/Badge';
 import ClassIcon from '@mui/icons-material/Class';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import { Avatar } from "@mui/material";
 
 export default function AboutPage() {
   const router = useRouter();
@@ -83,7 +84,6 @@ export default function AboutPage() {
           bgcolor: "#ffffff", 
           border: "1px solid #e2e8f0", 
           boxShadow: "0px 20px 40px rgba(0,0,0,0.4)", 
-          overflow: "visible" 
         }}>
           
           <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
@@ -96,81 +96,17 @@ export default function AboutPage() {
 
             <Divider sx={{ my: 3, borderColor: "#e2e8f0" }} />
 
-            {/* ส่วนโปรไฟล์และ Social Media */}
-            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", mb: 4 }}>
-              
-              {/* รูปโปรไฟล์ขยายใหญ่พิเศษ (180px) พร้อมเอฟเฟกต์แสงฟุ้งด้านหลัง */}
-              <Box sx={{ 
-                position: "relative",
-                display: "inline-block",
-                mb: 3,
-              }}>
-                <Box sx={{ 
-                  position: "absolute",
-                  inset: -6,
-                  borderRadius: "50%",
-                  background: "linear-gradient(45deg, #ff4d4d, #f9d423)",
-                  opacity: 0.8,
-                  filter: "blur(12px)",
-                }} />
-                <Avatar 
-                  alt="ชาญวิทย์ อุ่นสกุล"
-                  src="Alex1.jpg" 
-                  sx={{ 
-                    width: 180,  // ✨ ขยายขนาดความกว้างขึ้นเป็น 180px
-                    height: 180, // ✨ ขยายขนาดความสูงขึ้นเป็น 180px
-                    bgcolor: "#ff4d4d", 
-                    fontSize: "4rem",
-                    border: "5px solid #fff",
-                    boxShadow: "0px 10px 28px rgba(0,0,0,0.25)",
-                    position: "relative",
-                    zIndex: 1
-                  }}
-                >
-                  CA
-                </Avatar>
-              </Box>
-
-              <Typography variant="h4" sx={{ fontWeight: "800", color: "#1a202c", mb: 0.5, letterSpacing: "-1px" }}>
-                ชาญวิทย์ อุ่นสกุล
-              </Typography>
-              <Typography variant="subtitle1" sx={{ color: "#718096", fontWeight: "600", mb: 2.5, bgcolor: "#edf2f7", px: 2, py: 0.5, borderRadius: 4 }}>
-                Front-end Web Developer
-              </Typography>
-
-              {/* ปุ่ม Social Media (แก้ไขพรอพ เพื่อลบ Error เคลียร์เส้นแดงเรียบร้อย) */}
-              <Stack direction="row" spacing={2.5} sx={{ justifyContent: "center" }}>
-                <Avatar 
-                  component="a"
-                  href="https://www.facebook.com/chanwit.unsakul.3?locale=th_TH" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ ...socialButtonStyle, bgcolor: "#1877f2" }}
-                >
-                  <FacebookIcon sx={{ fontSize: 22, color: "#fff" }} />
-                </Avatar>
-                <Avatar 
-                  component="a"
-                  href="https://www.instagram.com/chanwit_alex/" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ ...socialButtonStyle, bgcolor: "#e1306c" }}
-                >
-                  <InstagramIcon sx={{ fontSize: 22, color: "#fff" }} />
-                </Avatar>
-              </Stack>
-            </Box>
-
-            {/* เส้นคั่นพร้อมข้อความ */}
-            <Divider sx={{ my: 4, borderColor: "#e2e8f0" }}>
-              <Typography variant="caption" sx={{ color: "#94a3b8", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", px: 1 }}>
-                Personal Info
-              </Typography>
-            </Divider>
-
-            {/* ข้อมูลประวัตินักศึกษา (Personal Info) */}
+            {/* ส่วนข้อมูลประวัตินักศึกษา (Personal Info) */}
             <Stack spacing={2} sx={{ width: "100%", color: "#2d3748" }}>
               
+              {/* ชื่อ-นามสกุล อยู่บนสุดเหนือนรหัสนักศึกษา */}
+              <Box sx={infoRowStyle}>
+                <PersonIcon sx={infoIconStyle} />
+                <Typography variant="body1">
+                  <strong>ชื่อ-นามสกุล:</strong> นายชาญวิทย์ อุ่นสกุล
+                </Typography>
+              </Box>
+
               <Box sx={infoRowStyle}>
                 <BadgeIcon sx={infoIconStyle} />
                 <Typography variant="body1">
@@ -200,6 +136,35 @@ export default function AboutPage() {
                 </Box>
               </Box>
 
+            </Stack>
+
+            {/* เส้นคั่นพร้อมปุ่ม Social Media สำหรับติดต่อด้านล่างประวัตินักศึกษา */}
+            <Divider sx={{ my: 4, borderColor: "#e2e8f0" }}>
+              <Typography variant="caption" sx={{ color: "#94a3b8", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "1px", px: 1 }}>
+                Contact Developer
+              </Typography>
+            </Divider>
+
+            {/* ปุ่ม Social Media แบบคลิกเด้งไปที่แอป */}
+            <Stack direction="row" spacing={2.5} sx={{ justifyContent: "center", mb: 2 }}>
+              <Avatar 
+                component="a"
+                href="https://www.facebook.com/chanwit.unsakul.3?locale=th_TH" 
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ ...socialButtonStyle, bgcolor: "#1877f2" }}
+              >
+                <FacebookIcon sx={{ fontSize: 22, color: "#fff" }} />
+              </Avatar>
+              <Avatar 
+                component="a"
+                href="https://www.instagram.com/chanwit_alex/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{ ...socialButtonStyle, bgcolor: "#e1306c" }}
+              >
+                <InstagramIcon sx={{ fontSize: 22, color: "#fff" }} />
+              </Avatar>
             </Stack>
 
             <Divider sx={{ my: 4, borderColor: "#e2e8f0" }} />
