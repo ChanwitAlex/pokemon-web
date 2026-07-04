@@ -1,4 +1,4 @@
-# 🎮 Pokémon Web
+# Pokémon Web
 
 A web application for searching and viewing Pokémon information, built with **Next.js** and **Material-UI (MUI)**, fetching real-time data from the [PokéAPI](https://pokeapi.co/).
 
@@ -6,7 +6,7 @@ This project was developed to learn and apply concepts of Pagination, Dynamic Ro
 
 ---
 
-## ✨ Features
+## Features
 
 - 🔍 **Pokédex Home Page** — Displays a list of Pokémon with pagination support
 - 📄 **Pokémon Detail Page (Dynamic Routing)** — Click into any Pokémon to view in-depth information, including:
